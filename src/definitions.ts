@@ -9,3 +9,7 @@ export interface ISources {
 export interface ISinks {
   dom: Stream<VNode>;
 }
+
+export interface IState {
+  message: string
+}

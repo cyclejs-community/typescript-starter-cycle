@@ -1,16 +1,17 @@
 import { Stream } from 'xstream';
 import { ISinks } from './definitions';
 import { div, label, input, hr, h1 } from '@cycle/dom';
+import { IState } from './definitions';
 
-function view(message$: Stream<string>): ISinks {
+function view(state$: Stream<IState>): ISinks {
   const vTree$ =
-    message$
-      .map(message =>
+    state$
+      .map(state =>
         div('#root', [
           label('Name:'),
           input('.field', { attr: { type: 'text' } }),
           hr(),
-          h1([message]),
+          h1([state.message]),
         ])
       );
   const sinks = {

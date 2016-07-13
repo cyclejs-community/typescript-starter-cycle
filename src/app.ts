@@ -20,7 +20,7 @@ function main(sources: ISources): ISinks {
       .map(name =>
         div('#root', [
           label('Name:'),
-          input('.field', {attributes: {type: 'text', value: name}}),
+          input('.field', {attrs: {type: 'text', value: name}}),
           hr(),
           h1(name?`Hello, ${name}!`:'Hello! Please enter your name...'),
         ])

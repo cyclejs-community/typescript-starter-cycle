@@ -4,7 +4,7 @@ import model from './model';
 import view from './view';
 
 function main(sources: ISources): ISinks {
-    return view(model(intent(sources)));
+  return view(model(intent(sources)));
 }
 
 export default main;

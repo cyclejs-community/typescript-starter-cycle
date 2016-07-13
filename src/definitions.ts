@@ -3,9 +3,9 @@ import { VNode } from '@cycle/dom';
 import { DOMSource } from '@cycle/dom/xstream-typings';
 
 export interface ISources {
-    dom: DOMSource;
+  dom: DOMSource;
 }
 
 export interface ISinks {
-    dom: Stream<VNode>;
+  dom: Stream<VNode>;
 }

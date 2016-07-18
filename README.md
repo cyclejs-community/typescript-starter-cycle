@@ -5,6 +5,7 @@ A simple project for getting started with TypeScript in cycle.js, using Webpack.
 * [Simple Starter](https://github.com/cyclejs-community/typescript-starter-cycle/)
 * [Model-View-Intent (MVI) Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-model-view-intent-pattern)
 * MVI with Reducers Starter - this branch
+* [MVI with Property Streams Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-property-stream-pattern)
 
 <br>
 <br>

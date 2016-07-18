@@ -1,23 +1,19 @@
 import { Stream } from 'xstream';
-import { ISinks } from './definitions';
-import { div, label, input, hr, h1 } from '@cycle/dom';
+import { div, label, input, hr, h1, VNode } from '@cycle/dom';
 import { IState } from './definitions';
 
-function view(state$: Stream<IState>): ISinks {
-  const vTree$ =
-    state$
-      .map(state =>
+function view(state: IState): Stream<VNode> {
+  const vdom$ =
+    state.message$
+      .map(message =>
         div('#root', [
           label('Name:'),
           input('.field', { attr: { type: 'text' } }),
           hr(),
-          h1([state.message]),
+          h1([message]),
         ])
       );
-  const sinks = {
-    dom: vTree$
-  };
-  return sinks;
+  return vdom$;
 }
 
 export default view;

@@ -11,5 +11,5 @@ export interface ISinks {
 }
 
 export interface IState {
-  message: string
+  message$: Stream<string>
 }

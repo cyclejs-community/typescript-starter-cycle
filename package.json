@@ -4,6 +4,7 @@
   "description": "A simple project for getting started with TypeScript in cycle.js, using Webpack",
   "main": "index.js",
   "scripts": {
+    "postinstall": "typings install",
     "dev": "concurrently \"webpack --watch\" \"lite-server\"",
     "start": "npm run dev"
   },

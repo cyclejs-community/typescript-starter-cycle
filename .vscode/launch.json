@@ -7,7 +7,11 @@
             "request": "launch",
             "url": "http://localhost:3000",
             "sourceMaps": true,
-            "webRoot": "${workspaceRoot}"
+            "webRoot": "${workspaceRoot}",
++            
++            //This line is important, since it instructs chrome to run in a separate, sandbox instance.
++            //This way, other running chrome instances won't prevent remote debugging from running.            
++            "userDataDir": "C:\\temp\\chrome-dev-instance"
         },
         {
             "name": "Attach to Chrome, with sourcemaps",

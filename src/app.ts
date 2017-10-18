@@ -1,7 +1,7 @@
 import { run } from '@cycle/run';
 import { App } from './components/App';
 import { makeDOMDriver } from '@cycle/dom';
-import { makeHashHistoryDriver } from '@cycle/history';
+import { captureClicks, makeHashHistoryDriver } from '@cycle/history';
 import { cssRaw } from 'typestyle';
 import { normalize, setupPage } from 'csstips';
 
@@ -30,5 +30,5 @@ cssRaw(`
 
 run(App, {
   dom: makeDOMDriver('#app'),
-  history: makeHashHistoryDriver()
+  history: captureClicks(makeHashHistoryDriver())
 });

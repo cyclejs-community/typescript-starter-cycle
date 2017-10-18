@@ -1,16 +1,17 @@
-import { Stream } from 'xstream';
+import { Stream, MemoryStream } from 'xstream';
 import { DOMSource, VNode, div, h1, em, br } from '@cycle/dom';
 import { style } from 'typestyle';
 import { rem } from 'csx';
 import { NavMenu } from './NavMenu';
+import { Location } from '@cycle/history';
 
 interface Sources {
   dom: DOMSource;
+  history: MemoryStream<Location>;
 }
 
 interface Sinks {
   dom: Stream<VNode>;
-  history: Stream<string>;
 }
 
 const className = style({
@@ -33,8 +34,8 @@ const className = style({
 
 const xs = Stream;
 
-export const Header = ({ dom }: Sources): Sinks => {
-  const navMenu = NavMenu({ dom });
+export const Header = ({ dom, history }: Sources): Sinks => {
+  const navMenu = NavMenu({ dom, history });
   const vdom$ = navMenu.dom.map(navMenu =>
     div(`.${className}`, [
       h1([
@@ -46,7 +47,6 @@ export const Header = ({ dom }: Sources): Sinks => {
     ])
   );
   return {
-    dom: vdom$,
-    history: navMenu.history
+    dom: vdom$
   };
 };

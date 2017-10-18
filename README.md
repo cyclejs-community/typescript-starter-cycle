@@ -14,11 +14,7 @@ An opinionated starter for Cycle.js projects powered by TypeScript.
 
 ##### Visual Studio Code Specifics
 This repository is optimized for [Visual Studio Code](https://code.visualstudio.com/).
-
-We have
-* launch configurations
-* editor config file
-* workspace settings
+We have launch configurations, an editor config file, and workspace settings.
 
 To make full use of these, you need the following extensions:
 * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)

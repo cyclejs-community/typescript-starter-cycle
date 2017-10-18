@@ -4,7 +4,7 @@
   "description": "An opinionated starter for Cycle.js projects powered by TypeScript",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --content-base ./docs --hot --inline --colors --port 3030 --open --history-api-fallback",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --content-base ./dist --hot --inline --colors --port 3030 --open --history-api-fallback",
     "start": "npm run dev"
   },
   "repository": {

@@ -6,7 +6,8 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "experimentalDecorators": true,
-    "lib": [ "dom", "es6", "es5" ]
+    "lib": [ "dom", "es6", "es5" ],
+    "baseUrl": "./src"
   },
   "include": [
     "./src/**/*"

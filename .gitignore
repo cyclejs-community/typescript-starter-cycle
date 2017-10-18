@@ -38,6 +38,3 @@ jspm_packages
 
 # Generated files
 dist
-
-# Typings
-typings/

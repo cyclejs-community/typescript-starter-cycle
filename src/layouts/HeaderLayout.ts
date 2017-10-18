@@ -2,11 +2,19 @@ import { pluck } from 'utils/pluck';
 import { Layout } from './';
 import { Header } from 'components/Header';
 import { Stream } from 'xstream';
-import { header, div, main } from '@cycle/dom';
+import { header, div, hr, main } from '@cycle/dom';
 import { style } from 'typestyle';
+import { rem } from 'csx';
 
 const className = style({
-  background: 'white'
+  $nest: {
+    '&>header': {
+      padding: rem(1),
+    },
+    '&>main': {
+      padding: rem(1)
+    }
+  }
 });
 
 const xs = Stream;
@@ -18,6 +26,7 @@ export const HeaderLayout: Layout = ({ component: { dom, history } }) => {
       .map(([ headerDom, component ]) =>
         div(`.header.layout.${className}`, [
           header(headerDom),
+          hr(),
           main(component)
         ])
       );

@@ -1,5 +1,7 @@
 import { Stream } from 'xstream';
-import { VNode, div, h1, em } from '@cycle/dom';
+import { VNode, div, h1, em, br } from '@cycle/dom';
+import { style } from 'typestyle';
+import { rem } from 'csx';
 
 interface Sinks {
   dom: Stream<VNode>;
@@ -7,11 +9,20 @@ interface Sinks {
 
 const xs = Stream;
 
+const className = style({
+  $nest: {
+    '& em': {
+      fontSize: rem(1)
+    }
+  }
+});
+
 export const Header = () => ({
   dom: xs.of(
-    div('.header', [
+    div(`.${className}`, [
       h1([
         'TypeScript Starter Cycle',
+        br(),
         em('An opinionated starter for Cycle.js projects powered by TypeScript')
       ])
     ])

@@ -16,15 +16,17 @@ interface Sinks {
 }
 
 const navLink = {
-  color: '#333',
+  color: '#999',
   fontSize: rem(1),
   fontWeight: 700,
   marginRight: rem(1),
   textDecoration: 'none',
+  transition: 'color .3s'
 };
 const navLinkHover = {
   ...navLink,
-  cursor: 'pointer'
+  cursor: 'pointer',
+  color: '#666'
 };
 
 const className = style({
@@ -38,7 +40,10 @@ const className = style({
         '&:first-child': {
           marginLeft: 'auto'
         },
-        '&&:hover': navLinkHover,
+        '&:hover': navLinkHover,
+        '&.active': {
+          color: '#333'
+        }
       }
     }
   }

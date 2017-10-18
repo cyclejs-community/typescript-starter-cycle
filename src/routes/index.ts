@@ -11,7 +11,7 @@ export interface RouteComponent {
 export interface RouteResolution<T> {
   path?: string;
   getComponent: () => Promise<RouteComponent>;
-  getLayout: () => Promise<Layout>;
+  getLayout?: () => Promise<Layout>;
   sources?: T
 }
 

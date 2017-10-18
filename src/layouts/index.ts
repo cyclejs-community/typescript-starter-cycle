@@ -2,9 +2,9 @@ import { Stream } from 'xstream';
 import { Sources, Sinks } from 'components/App';
 
 interface LayoutSources extends Sources {
-  component: Sinks;
+  component: Partial<Sinks>;
 }
 
 export interface Layout {
-  (sources: LayoutSources): Sinks;
+  (sources: LayoutSources): Partial<Sinks>;
 }

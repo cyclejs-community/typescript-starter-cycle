@@ -3,15 +3,18 @@ import { DOMSource, VNode, div } from '@cycle/dom';
 import { HistoryInput, Location } from '@cycle/history';
 import { resolve } from 'routes';
 import { pluck } from 'utils/pluck';
+import { GithubSource } from 'drivers/github';
 
 export interface Sources {
   dom: DOMSource;
   history: MemoryStream<Location>;
+  github: GithubSource;
 }
 
 export interface Sinks {
   dom: Stream<VNode>;
   history: Stream<HistoryInput | string>;
+  github: Stream<string>;
 }
 
 const xs = Stream;
@@ -26,7 +29,7 @@ export const App = (sources: Sources): Sinks => {
             .then(Component => Component({ ...sources, ...(resolution.sources || {}) }))
             .then(component =>
               !getLayout
-                ? component
+                ? Promise.resolve(component)
                 : getLayout().then(Layout => Layout({ ...sources, component }))
           )
         )
@@ -34,6 +37,7 @@ export const App = (sources: Sources): Sinks => {
       .flatten();
   return {
     dom: pluck(app$, app$ => app$.dom),
-    history: pluck(app$, app$ => app$.history)
+    history: pluck(app$, app$ => app$.history),
+    github: pluck(app$, app$ => app$.github)
   };
 };

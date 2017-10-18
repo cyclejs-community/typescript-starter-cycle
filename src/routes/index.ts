@@ -6,7 +6,7 @@ import switchPath from 'switch-path';
 import { Commits } from './Commits';
 
 export interface RouteComponent {
-  (sources: Sources): Sinks;
+  (sources: Sources): Partial<Sinks>;
 }
 
 interface RouteResolution {

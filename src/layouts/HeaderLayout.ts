@@ -19,10 +19,10 @@ const className = style({
 
 const xs = Stream;
 
-export const HeaderLayout: Layout = ({ dom, history, component: { dom: componentDom, history: componentHistory } }) => {
+export const HeaderLayout: Layout = ({ dom, history, github, component: { dom: componentDom, ...component } }) => {
   const headerComponent = Header({ dom, history });
   const vdom$ =
-    xs.combine(headerComponent.dom, componentDom)
+    xs.combine(headerComponent.dom, componentDom || xs.empty())
       .map(([headerDom, component]) =>
         div(`.header.layout.${className}`, [
           header(headerDom),
@@ -32,6 +32,6 @@ export const HeaderLayout: Layout = ({ dom, history, component: { dom: component
       );
   return {
     dom: vdom$,
-    history: componentHistory
+    ...component
   };
 };

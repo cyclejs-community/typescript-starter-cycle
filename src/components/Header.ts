@@ -11,6 +11,9 @@ const xs = Stream;
 
 const className = style({
   $nest: {
+    '& h1': {
+      marginBottom: 0
+    },
     '& em': {
       fontSize: rem(1)
     }

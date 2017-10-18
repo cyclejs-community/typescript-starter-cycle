@@ -1,6 +1,6 @@
-import { pluck } from './utils';
+import { pluck } from 'utils/pluck';
 import { Layout } from './';
-import { Header } from '../components/Header';
+import { Header } from 'components/Header';
 import { Stream } from 'xstream';
 import { header, div, main } from '@cycle/dom';
 import { style } from 'typestyle';
@@ -11,11 +11,10 @@ const className = style({
 
 const xs = Stream;
 
-export const HeaderLayout: Layout = sources => {
+export const HeaderLayout: Layout = ({ component: { dom, history } }) => {
   const headerDom$ = Header().dom;
-  const componentDom$ = pluck(sources.component$, c => c.dom);
   const vdom$ =
-    xs.combine(headerDom$, componentDom$)
+    xs.combine(headerDom$, dom)
       .map(([ headerDom, component ]) =>
         div(`.header.layout.${className}`, [
           header(headerDom),
@@ -24,6 +23,6 @@ export const HeaderLayout: Layout = sources => {
       );
   return {
     dom: vdom$,
-    history: pluck(sources.component$, c => c.history)
+    history
   };
 };

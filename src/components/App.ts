@@ -1,6 +1,8 @@
 import { Stream, MemoryStream } from 'xstream';
 import { DOMSource, VNode, div } from '@cycle/dom';
 import { HistoryInput, Location } from '@cycle/history';
+import { resolve } from 'routes';
+import { pluck } from 'utils/pluck';
 
 export interface Sources {
   dom: DOMSource;
@@ -15,8 +17,19 @@ export interface Sinks {
 const xs = Stream;
 
 export const App = (sources: Sources): Sinks => {
+  const app$ =
+    sources.history
+      .map(location => resolve(location.pathname))
+      .map(({ getComponent, getLayout, ...resolution }) =>
+        xs.fromPromise(Promise.all([getComponent(), getLayout()]))
+          .map(([Component, Layout]) => {
+            const layoutSources = { ...sources, component: Component({ ...sources, ...(resolution.sources || {}) }) };
+            return Layout(layoutSources);
+          })
+      )
+      .flatten();
   return {
-    dom: xs.of(div('.app', ['Hello from Cycle.js!'])),
-    history: xs.of('')
-  };
+    dom: pluck(app$, app$ => app$.dom),
+    history: pluck(app$, app$ => app$.history)
+  }
 };

@@ -21,7 +21,7 @@ const NavLinkComponent = ({ dom, history, href$, title$ }: Sources): Sinks => {
   const currentHref$ = history.map(location => location.pathname);
   const active$ =
     currentHref$
-      .map(href => href$.debug().map(h => href === h))
+      .map(href => href$.map(h => href === h))
       .flatten();
   const vdom$ =
     xs.combine(href$, active$, title$)

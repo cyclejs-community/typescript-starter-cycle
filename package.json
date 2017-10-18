@@ -24,6 +24,17 @@
     "url": "https://github.com/cyclejs-community/typescript-starter-cycle/issues"
   },
   "homepage": "https://github.com/cyclejs-community/typescript-starter-cycle",
+  "dependencies": {
+    "@cycle/dom": "^18.3.0",
+    "@cycle/history": "^6.4.0",
+    "@cycle/http": "^14.5.0",
+    "@cycle/isolate": "^3.1.0",
+    "@cycle/run": "^3.3.0",
+    "ramda": "^0.25.0",
+    "switch-path": "^1.2.0",
+    "typestyle": "^1.4.3",
+    "xstream": "^11.0.0"
+  },
   "devDependencies": {
     "copy-webpack-plugin": "^4.1.1",
     "cross-env": "^5.1.0",
@@ -36,16 +47,5 @@
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-dev-server": "^2.9.2",
     "yargs": "^9.0.1"
-  },
-  "dependencies": {
-    "@cycle/dom": "^18.3.0",
-    "@cycle/history": "^6.4.0",
-    "@cycle/http": "^14.5.0",
-    "@cycle/isolate": "^3.1.0",
-    "@cycle/run": "^3.3.0",
-    "ramda": "^0.25.0",
-    "switch-path": "^1.2.0",
-    "typestyle": "^1.4.3",
-    "xstream": "^11.0.0"
   }
 }

@@ -48,11 +48,13 @@ const NavMenuComponent = ({ dom }: Sources): Sinks => {
   const navigateTo$ =
     dom.select('a')
       .events('click', { preventDefault: true })
-      .map(ev => (ev.target as HTMLAnchorElement).href);
+      .map(ev => (ev.target as HTMLAnchorElement).href)
+      .debug();
   const vdom$ =
     xs.of(
       nav(`.${className}`, [
         a({ attrs: { href: '#/', title: 'Home' } }, ['Home']),
+        a({ attrs: { href: '#/commits', title: 'Commits' } }, ['Commits']),
         a({ attrs: { href: '#/about', title: 'About' } }, ['About']),
       ])
     );

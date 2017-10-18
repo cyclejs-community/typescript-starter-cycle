@@ -3,20 +3,25 @@ import { Home } from './Home';
 import { Sources, Sinks } from 'components/App';
 import { Layout } from 'layouts';
 import switchPath from 'switch-path';
+import { Commits } from './Commits';
 
 export interface RouteComponent {
   (sources: Sources): Sinks;
 }
 
-export interface RouteResolution<T> {
+interface RouteResolution {
   path?: string;
   getComponent: () => Promise<RouteComponent>;
   getLayout?: () => Promise<Layout>;
-  sources?: T
+  sources?: any;
+}
+
+interface ParameterizedRouteResolution {
+  (a: string, b?:string, c?: string, d?: string): RouteResolution;
 }
 
 export interface RouteDefinitions {
-  [path: string]: RouteResolution<any>;
+  [path: string]: RouteResolution | ParameterizedRouteResolution | RouteDefinitions;
 }
 
 // Example of async layout loading
@@ -35,15 +40,21 @@ const routes: RouteDefinitions = {
   },
   '/about': {
     // Example of async component loading
+    // The component does not expose its own async loader because the requiring component
+    // should have the power to decide on async loading.
     getComponent: async () => {
       const { About } = await import(/* webpackChunkName: "About" */'./About');
       return About;
     },
     getLayout: getHeaderLayout
-  }
+  },
+  // Example of loading route definitions (and nested routes)
+  // The synchronous sub routes are instantly loaded, the async sub routes
+  // are loaded asynchronously on demand.
+  '/commits': Commits
 };
 
-const resolveImplementation = <T>(routes: RouteDefinitions, route: string): RouteResolution<T> => {
+const resolveImplementation = <T>(routes: RouteDefinitions, route: string): RouteResolution => {
   const { path, value: { getComponent, getLayout, sources } } = switchPath(route, routes);
   return {
     path,

@@ -1,22 +1,29 @@
 # typescript-starter-cycle
-A simple project for getting started with TypeScript in cycle.js, using Webpack.
+An opinionated starter for Cycle.js projects powered by TypeScript.
 
-## Patterns
-* Simple Starter - this branch
-* [Model-View-Intent (MVI) Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-model-view-intent-pattern)
-* [MVI with Reducers Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-reducer-pattern)
-* [MVI with Property Streams Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-property-stream-pattern)
-
-<br>
-<br>
-<br>
-<br>
-<hr>
+## Features
+* TypeScript
+* Webpack
+* Visual Studio Code integrations
+* Hot Module Reloading
+* TypeStyle for styles
+* Unit testing with Mocha and Chai
+* UI Integration tests with Cypress
+* Async imports and dynamic routing
+* Simple routing with layouts
 
 ##### Visual Studio Code Specifics
-This repository has workspace settings and launch configuration for [Visual Studio Code](https://code.visualstudio.com/) as candy. The launch configuration will only work when the [Debugger for Chrome extension](https://code.visualstudio.com/blogs/2016/02/23/introducing-chrome-debugger-for-vs-code) is installed. The [npm Script Runner extension](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script) for Visual Studio Code is also recommended.
+This repository is optimized for [Visual Studio Code](https://code.visualstudio.com/).
 
-For a quickstart guide/tutorial, see [here](https://journal.artfuldev.com/cycle-js-quick-start-with-typescript-and-webpack-in-visual-studio-code-e562a009e9d6#.qpn2b7vkl)
+We have
+* launch configurations
+* editor config file
+* workspace settings
+
+To make full use of these, you need the following extensions:
+* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+* [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
 ##### Notes
-> If hosting on github-pages, you need to remove `dist` entry in the `.gitignore` file.
+* If using on Windows machines, make sure you have the [build tools](https://github.com/felixrieseberg/windows-build-tools) ready before doing an `npm install`.
+* If hosting on a subdirectory, you need to change the `PROJECT_PUBLIC_PATH` in `webpack.config.js` only for production. You can do this by changing line #32 of the file to `var PROJECT_PUBLIC_PATH = __PROD__ ? '<your-public-path-here>' : '/';`

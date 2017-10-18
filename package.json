@@ -25,7 +25,9 @@
   },
   "homepage": "https://github.com/cyclejs-community/typescript-starter-cycle",
   "devDependencies": {
+    "copy-webpack-plugin": "^4.1.1",
     "cross-env": "^5.1.0",
+    "html-webpack-plugin": "^2.30.1",
     "source-map-loader": "^0.2.2",
     "ts-loader": "^3.0.2",
     "typescript": "^2.5.3",

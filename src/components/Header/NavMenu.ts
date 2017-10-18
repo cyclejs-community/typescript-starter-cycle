@@ -13,16 +13,16 @@ interface Sinks {
   history: Stream<string>;
 }
 
-const whiteColor = { color: 'white' };
-const noTextDecoration = { textDecoration: 'none' };
-const cursorPointer = { cursor: 'pointer' };
 const navLink = {
-  ...whiteColor,
-  ...noTextDecoration
+  color: '#333',
+  fontSize: rem(1),
+  fontWeight: 700,
+  marginRight: rem(1),
+  textDecoration: 'none',
 };
 const navLinkHover = {
   ...navLink,
-  ...cursorPointer
+  cursor: 'pointer'
 };
 
 const className = style({
@@ -31,16 +31,12 @@ const className = style({
   $nest: {
     '& > a': {
       ...navLink,
-      marginRight: rem(1),
+      textTransform: 'uppercase',
       $nest: {
         '&:first-child': {
           marginLeft: 'auto'
         },
-        '&:link': navLink,
-        '&&:visited': navLink,
-        '&&&:hover': navLinkHover,
-        '&&&&:active': navLink,
-        '&&&&&:focus': navLink
+        '&&:hover': navLinkHover,
       }
     }
   }

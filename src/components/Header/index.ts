@@ -18,7 +18,9 @@ const className = style({
   $nest: {
     '& h1': {
       marginBottom: 0,
+      marginTop: 0,
       flex: '1 0 60%',
+      lineHeight: 1
     },
     '& em': {
       fontSize: rem(1)

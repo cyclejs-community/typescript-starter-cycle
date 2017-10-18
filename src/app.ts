@@ -11,8 +11,8 @@ setupPage('#app');
 cssRaw(`
   #app {
     font-family: medium-content-sans-serif-font,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Arial,sans-serif;
-    background: #9c27b0;
-    color: white;
+    background: white;
+    color: #333;
     display: flex;
   }
 

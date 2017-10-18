@@ -51,11 +51,13 @@ webpackConfig.entry = {
     : [APP_ENTRY],
   vendor: [
     '@cycle/run',
+    '@cycle/http',
     '@cycle/history',
     '@cycle/isolate',
     '@cycle/dom',
     'xstream',
     'typestyle',
+    'switch-path',
     'ramda'
   ]
 };

@@ -5,6 +5,7 @@ var debug = require('debug')('app:config:webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanupPlugin = require('webpack-cleanup-plugin');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Environment Constants
 var NODE_ENV = process.env.NODE_ENV;
@@ -80,7 +81,11 @@ webpackConfig.plugins = [
     filename: 'index.html',
     inject: 'body',
     minify: { collapseWhitespace: true }
-  })
+  }),
+  new CopyWebpackPlugin([
+    { from: 'src/images', to: 'images' },
+    { from: 'src/fonts', to: 'fonts' }
+  ])
 ];
 
 if (__DEV__) {

@@ -1,24 +1,14 @@
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Chrome against localhost, with sourcemaps",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:3000",
-            "sourceMaps": true,
-            "webRoot": "${workspaceRoot}",
-            
-            //This line is important, since it instructs chrome to run in a separate, sandbox instance.
-            //This way, other running chrome instances won't prevent remote debugging from running.            
-            "userDataDir": "C:\\temp\\chrome-dev-instance"
-        },
-        {
-            "name": "Attach to Chrome, with sourcemaps",
-            "type": "chrome",
-            "request": "attach",
-            "port": 9222,
-            "sourceMaps": true,
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3030",
             "webRoot": "${workspaceRoot}"
         }
     ]

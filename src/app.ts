@@ -1,34 +1,36 @@
-import { Stream } from 'xstream';
-import { div, label, input, hr, h1, makeDOMDriver, VNode } from '@cycle/dom';
-import { DOMSource } from '@cycle/dom/xstream-typings';
-import { run } from '@cycle/xstream-run';
+import { run } from '@cycle/run';
+import { App } from 'components/App';
+import { makeDOMDriver } from '@cycle/dom';
+import { captureClicks, makeHashHistoryDriver } from '@cycle/history';
+import { cssRaw } from 'typestyle';
+import { normalize, setupPage } from 'csstips';
+import { makeGithubDriver } from 'drivers/github';
 
-interface ISources {
-  dom: DOMSource;
-}
+normalize();
+setupPage('#app');
 
-interface ISinks {
-  dom: Stream<VNode>;
-}
+cssRaw(`
+  #app {
+    font-family: medium-content-sans-serif-font,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Arial,sans-serif;
+    background: white;
+    color: #333;
+    display: flex;
+  }
 
-function main(sources: ISources): ISinks {
-  const dom = sources.dom;
-  const sinks: ISinks = {
-    dom: dom.select('.field').events('input')
-      .map(ev => (ev.target as HTMLInputElement).value)
-      .startWith('')
-      .map(name =>
-        div('#root', [
-          label('Name:'),
-          input('.field', { attrs: { type: 'text', value: name } }),
-          hr(),
-          h1(name ? `Hello, ${name}!` : 'Hello! Please enter your name...'),
-        ])
-      )
-  };
-  return sinks;
-}
+  .layout {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
 
-run(main, {
-  dom: makeDOMDriver('#app')
-})
+  h1, h2, h3, h4, h5, h6 {
+    font-family: medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-weight: 100;
+  }
+`);
+
+run(App, {
+  dom: makeDOMDriver('#app'),
+  history: captureClicks(makeHashHistoryDriver()),
+  github: makeGithubDriver()
+});

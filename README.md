@@ -1,22 +1,38 @@
 # typescript-starter-cycle
-A simple project for getting started with TypeScript in cycle.js, using Webpack.
+An opinionated starter for Cycle.js projects powered by TypeScript.
 
-## Patterns
-* Simple Starter - this branch
-* [Model-View-Intent (MVI) Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-model-view-intent-pattern)
-* [MVI with Reducers Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-reducer-pattern)
-* [MVI with Property Streams Starter](https://github.com/cyclejs-community/typescript-starter-cycle/tree/add-property-stream-pattern)
+## Opinions
+* TypeScript rocks. We use TypeScript as much as possible.
+* Visual Studio Code rocks. We use Visual Studio Code as the recommended editor.
+* Webpack rocks. We use webpack only.
 
-<br>
-<br>
-<br>
-<br>
-<hr>
+## Features
+* TypeScript
+* Webpack
+* TypeStyle for styles
+* Simple routing with layouts
+* Hot Module Reloading
+* Async imports and dynamic routing
+* Visual Studio Code integrations
 
-##### Visual Studio Code Specifics
-This repository has workspace settings and launch configuration for [Visual Studio Code](https://code.visualstudio.com/) as candy. The launch configuration will only work when the [Debugger for Chrome extension](https://code.visualstudio.com/blogs/2016/02/23/introducing-chrome-debugger-for-vs-code) is installed. The [npm Script Runner extension](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script) for Visual Studio Code is also recommended.
+### Planned
+* Unit testing with Mocha and Chai
+* UI Integration tests with Cypress
+* Explanation of folder structure
+* Wiki section on recommended/best practices
+* Better README (duh!)
 
-For a quickstart guide/tutorial, see [here](https://journal.artfuldev.com/cycle-js-quick-start-with-typescript-and-webpack-in-visual-studio-code-e562a009e9d6#.qpn2b7vkl)
+## Notes
 
-##### Notes
-> If hosting on github-pages, you need to remove `dist` entry in the `.gitignore` file.
+### Visual Studio Code Specifics
+This repository is optimized for [Visual Studio Code](https://code.visualstudio.com/).
+We have launch configurations, an editor config file, and workspace settings.
+
+To make full use of these, you need the following extensions:
+* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+* [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+
+### Troubleshooting / Tips
+* If using on Windows machines, make sure you have the [build tools](https://github.com/felixrieseberg/windows-build-tools) ready before doing an `npm install`.
+* If hosting on a subdirectory, you need to change the `PROJECT_PUBLIC_PATH` in `webpack.config.js` only for production. You can do this by changing line #32 of the file to `var PROJECT_PUBLIC_PATH = __PROD__ ? '<your-public-path-here>' : '/';`
+* If you need help with something, or have feedback, suggestions, feel free to open an issue on this repository.

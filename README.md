@@ -18,6 +18,8 @@ An opinionated starter for Cycle.js projects powered by TypeScript.
 ### Planned
 * Unit testing with Mocha and Chai
 * UI Integration tests with Cypress
+* Explanation of folder structure
+* Wiki section on recommended practices
 * Better README (duh!)
 
 ## Notes

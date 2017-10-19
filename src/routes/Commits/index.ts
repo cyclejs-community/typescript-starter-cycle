@@ -18,13 +18,14 @@ export const Commits: RouteDefinitions = {
     },
     getLayout: getHeaderLayout
   },
-  '/:id': id => ({
+  // Example of providing additional sources based on route parameters
+  '/:sha': sha => ({
     getComponent: async () => {
       const { Details } = await import(/* webpackChunkName: "CommitDetails" */'./routes/Details');
       return Details;
     },
     sources: {
-      id$: xs.of(id)
+      sha$: xs.of(sha)
     },
     getLayout: getHeaderLayout
   })

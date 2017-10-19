@@ -16,7 +16,7 @@ interface Sinks {
 const CommitListItemComponent = ({ dom, commit$ }: Sources): Sinks => {
   const navigateTo$ =
     commit$
-      .map(({ sha }) => dom.select('li').events('click', { preventDefault: true }).map(ev => `/commits/s${sha}`))
+      .map(({ sha }) => dom.select('li').events('click', { preventDefault: true }).map(ev => `/commits/${sha}`))
       .flatten();
   const vdom$ =
     commit$

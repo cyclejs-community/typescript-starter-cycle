@@ -16,7 +16,7 @@ export const List: RouteComponent = ({ dom, history, github }) => {
     );
   const commitListItemDoms$ =
     commitListItems$
-      .map(clis => xs.combine(...clis.map(cli => cli.dom)))
+      .map<Stream<VNode[]>>(clis => xs.combine(...clis.map(cli => cli.dom)))
       .flatten();
   const vdom$ = commitListItemDoms$.map(commits =>
     div([

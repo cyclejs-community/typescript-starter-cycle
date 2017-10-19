@@ -11,6 +11,7 @@ export const List: RouteComponent = ({ dom, history, github }) => {
   const commitListItems$ =
     commits$.map(commits =>
       commits
+        .filter(commit => !commit.commit.message.startsWith('Merge'))
         .map(commit => CommitListItem({ dom, commit$: xs.of(commit) }))
     );
   const commitListItemDoms$ =

@@ -14,6 +14,10 @@ export const List: RouteComponent = ({ dom, history, github }) => {
         .filter(commit => !commit.commit.message.startsWith('Merge'))
         .map(commit => CommitListItem({ dom, commit$: xs.of(commit) }))
     );
+  const navigateTo$ =
+    commitListItems$
+      .map(clis => xs.merge<string>(...clis.map(cli => cli.history)))
+      .flatten();
   const commitListItemDoms$ =
     commitListItems$
       .map<Stream<VNode[]>>(clis => xs.combine(...clis.map(cli => cli.dom)))
@@ -24,10 +28,6 @@ export const List: RouteComponent = ({ dom, history, github }) => {
       ul(commits)
     ])
   );
-  const navigateTo$ =
-    commitListItems$
-      .map(clis => xs.merge<string>(...clis.map(cli => cli.history)))
-      .flatten();;
   const request$ = xs.of('');
   return {
     dom: vdom$,

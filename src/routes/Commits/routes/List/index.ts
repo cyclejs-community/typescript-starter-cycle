@@ -1,7 +1,8 @@
 import { RouteComponent } from 'routes';
 import { Stream } from 'xstream';
-import { div, h2, ul, li } from '@cycle/dom';
+import { div, h2, ul, li, VNode } from '@cycle/dom';
 import { Commit } from 'drivers/github';
+import { CommitListItem } from './components/CommitListItem';
 
 const xs = Stream;
 
@@ -9,15 +10,23 @@ export const List: RouteComponent = ({ dom, history, github }) => {
   const commits$ = github.commits();
   const commitListItems$ =
     commits$.map(commits =>
-      commits.map(commit => li({ attrs: { 'data-sha': commit.sha } }, [commit.commit.message]))
+      commits
+        .map(commit => CommitListItem({ dom, commit$: xs.of(commit) }))
     );
-  const vdom$ = commitListItems$.map(commits =>
+  const commitListItemDoms$ =
+    commitListItems$
+      .map(clis => xs.combine(...clis.map(cli => cli.dom)))
+      .flatten();
+  const vdom$ = commitListItemDoms$.map(commits =>
     div([
       h2('Commits List'),
       ul(commits)
     ])
   );
-  const navigateTo$ = xs.empty();
+  const navigateTo$ =
+    commitListItems$
+      .map(clis => xs.merge<string>(...clis.map(cli => cli.history)))
+      .flatten();;
   const request$ = xs.of('');
   return {
     dom: vdom$,

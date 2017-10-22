@@ -47,7 +47,7 @@ export class GithubSource {
     return response$$
       .map(response$ => response$.replaceError(() => xs.of({ status: 500, body: [] } as Response)))
       .flatten()
-      .map(response => response.body as Commit[]).debug();
+      .map(response => response.body as Commit[]);
   }
   private __commitBySha(sha: string) {
     const response$$: Stream<Stream<Response>> = this.http.select(`commit-by-sha-${sha}`);

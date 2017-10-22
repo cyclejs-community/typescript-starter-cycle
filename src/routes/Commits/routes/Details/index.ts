@@ -17,36 +17,35 @@ const className = style({
 
 const xs = Stream;
 
-const initialCommit: Commit = {
-  sha: '',
-  commit: {
-    author: {
-      name: 'Loading...',
-      email: 'Loading...',
-      date: undefined
-    },
-    message: 'Loading...'
-  }
-};
+const getDom = ({ sha, commit: { message, author: { name, email, date } } }: Commit) => [
+  h3([message.split('\n\n')[0]]),
+  h4([strong([name])]),
+  h4([email]),
+  h4([em([date])]),
+  p([message.split('\n\n')[1] || ''])
+];
 
 export const Details: (sources: Sources) => Partial<Sinks> = ({ dom, github, sha$ }) => {
   const backButton = BackButton({ dom });
   const details$ =
     sha$
-      .map(sha => github.commits(sha).startWith(initialCommit))
-      .flatten();
+      .map(sha => github.commits(sha))
+      .flatten()
+      .remember();
+  const loaded$ = details$.mapTo(true).startWith(false).debug();
+  const contents$ = loaded$.map(loaded =>
+    loaded
+      ? details$.map(commit => getDom(commit))
+      : xs.of([h3(['Loading...'])])
+  ).flatten();
   const vdom$ =
-    xs.combine(backButton.dom, details$)
-      .map(([backButton, { sha, commit: { message, author: { name, email, date } } }]) =>
+    xs.combine(backButton.dom, contents$)
+      .map(([backButton, contents]) =>
         div([
           backButton,
           h2(`.${className}`, ['Details']),
           hr(),
-          h3([message.split('\n\n')[0]]),
-          h4([strong([name])]),
-          h4([email]),
-          h4([em([date])]),
-          p([message.split('\n\n')[1] || ''])
+          ...contents
         ])
       );
   return {
